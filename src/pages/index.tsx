@@ -1,9 +1,25 @@
 import ListsPreviews from '@/components/ListsPreviews';
+import { List } from '@/types/List';
+import { GetServerSideProps } from 'next';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function Home() {
+export const getServerSideProps: GetServerSideProps<{
+  lists: List[];
+}> = async () => {
+  const userId = 'user001';
+  const res = await fetch(`http://localhost:3000/api/lists?ownerId=${userId}`);
+  const lists = await res.json();
+
+  return { props: { lists } };
+};
+
+export default function Home({ lists }: { lists: List[] }) {
+  if (!lists) {
+    return <div>Error loading lists</div>;
+  }
+
   return (
     <main
       className={`flex min-h-screen flex-col items-center p-24 ${inter.className}`}
@@ -14,9 +30,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="relative flex place-items-center before:rounded-full">
-        <ListsPreviews />
-      </div>
+      <ListsPreviews lists={lists} />
     </main>
   );
 }

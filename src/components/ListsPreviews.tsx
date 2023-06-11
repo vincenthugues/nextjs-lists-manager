@@ -1,41 +1,9 @@
-import ListCard, { List } from './ListCard';
+import { List } from '@/types/List';
+import ListCard from './ListCard';
 
-const lists: List[] = [
-  {
-    id: 'list-a',
-    ownerId: 'user001',
-    name: 'List A',
-    description: 'Description List A',
-  },
-  {
-    id: 'list-b',
-    ownerId: 'user001',
-    name: 'List B',
-    description: 'Description List B',
-  },
-  {
-    id: 'list-c',
-    ownerId: 'user001',
-    name: 'List C',
-    description: 'Description List C',
-  },
-  {
-    id: 'list-d',
-    ownerId: 'user001',
-    name: 'List D',
-    description: 'Description List D',
-  },
-  {
-    id: 'list-e',
-    ownerId: 'user001',
-    name: 'List E',
-    description: 'Description List E',
-  },
-];
-
-export default function ListsPreviews() {
+export default function ListsPreviews({ lists }: { lists: List[] }) {
   return (
-    <div className="relative flex place-items-center before:rounded-full">
+    <div className="flex place-items-center flex-wrap">
       {lists.map((list) => (
         <ListCard key={list.id} list={list} />
       ))}
