@@ -30,6 +30,8 @@ export const lists: List[] = [
     id: 'list005',
     ownerId: 'user001',
     name: 'Articles to read',
+    type: 'links',
+    hasLinkAutofetch: true,
   },
   {
     id: 'list006',
@@ -80,10 +82,31 @@ export const listItems: ListItem[] = [
     notes: 'For vacation pictures',
   },
   {
-    id: 'list-item006',
+    id: 'list-item007',
     listId: 'list003',
     name: 'Film camera',
     sortOrder: 1,
     notes: 'To produce said pictures',
+  },
+  {
+    id: 'list-item008',
+    listId: 'list005',
+    name: 'Article 1',
+    sortOrder: 0,
+    url: 'https://www.nytimes.com/2023/06/13/science/archaeology-ancient-rome-medicine.html',
+  },
+  {
+    id: 'list-item009',
+    listId: 'list005',
+    name: 'Article 2',
+    sortOrder: 1,
+    url: 'https://www.nytimes.com/2023/06/12/arts/headless-statues-museums.html',
+  },
+  {
+    id: 'list-item010',
+    listId: 'list005',
+    name: 'Article 3',
+    sortOrder: 2,
+    url: 'https://www.nytimes.com/2023/06/13/arts/design/met-museum-trains-monuments-men-ukraine.html',
   },
 ];

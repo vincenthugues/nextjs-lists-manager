@@ -1,11 +1,11 @@
-export type ListStyle = 'image' | 'links' | 'text';
+export type ListType = 'text' | 'links' | 'images';
 
 export type List = {
   id: string;
   ownerId: string;
   name: string;
   description?: string;
-  style?: ListStyle;
+  type?: ListType;
   hasCheckboxes?: boolean;
   hasLinkAutofetch?: boolean;
 };
