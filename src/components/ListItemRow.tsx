@@ -1,7 +1,7 @@
 import { ListItem } from '@/types/ListItem';
 
 export default function ListItemRow({
-  listItem: { name, notes },
+  listItem: { name, notes, url, imageUrl },
   hasCheckbox,
   isChecked,
 }: {
@@ -24,7 +24,14 @@ export default function ListItemRow({
         {isChecked ? '🗹' : '☐'}
       </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <h2 className={`mb-3 text-xl font-semibold`}>{name}</h2>
+        <h2 className={`mb-3 text-xl font-semibold`}>
+          {url ? <a href={url}>{name}</a> : name}
+        </h2>
+        {imageUrl && (
+          <div>
+            <img src={imageUrl} alt={name} style={{ maxHeight: '240px' }} />
+          </div>
+        )}
         <p className={`m-0 max-w-[30ch] text-m opacity-90`}>{notes}</p>
       </div>
     </div>
