@@ -7,4 +7,5 @@ export type List = {
   description?: string;
   style?: ListStyle;
   hasCheckboxes?: boolean;
+  hasLinkAutofetch?: boolean;
 };

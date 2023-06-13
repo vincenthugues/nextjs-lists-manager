@@ -5,10 +5,11 @@ export type ListItem = {
   sortOrder: number;
   notes?: string;
   url?: string;
-  pulledInfo?: {
+  fetchedInfo?: {
     title: string;
     description?: string;
     heroImageUrl?: string;
   };
   imageUrl?: string;
+  lastFetched?: Date;
 };
