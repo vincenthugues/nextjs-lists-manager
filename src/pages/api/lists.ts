@@ -1,12 +1,8 @@
+import { getListsByOwnerId } from '@/db-calls';
 import { List } from '@/types/List';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { lists } from '../../db';
 
-function getListsByOwnerId(ownerId: string): List[] {
-  return lists.filter((list) => list.ownerId === ownerId);
-}
-
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<List[]>
 ) {
@@ -16,6 +12,6 @@ export default function handler(
     return res.status(200).json([]);
   }
 
-  const ownerLists = getListsByOwnerId(ownerId as string);
+  const ownerLists = await getListsByOwnerId(ownerId as string);
   res.status(200).json(ownerLists);
 }

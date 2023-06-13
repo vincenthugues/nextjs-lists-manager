@@ -1,23 +1,19 @@
 import ListComponent from '@/components/List';
+import { getListByIdAndOwnerId, getListItemsByListId } from '@/db-calls';
 import { List } from '@/types/List';
 import { ListItem } from '@/types/ListItem';
 import { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps<{
-  list: List;
+  list: List | null;
   listItems: ListItem[];
 }> = async (context) => {
   const userId = 'user001';
   const { listId } = context.query;
+
   const [list, listItems] = await Promise.all([
-    (
-      await fetch(
-        `http://localhost:3000/api/list?id=${listId}&ownerId=${userId}`
-      )
-    ).json(),
-    (
-      await fetch(`http://localhost:3000/api/listItems?listId=${listId}`)
-    ).json(),
+    getListByIdAndOwnerId(listId as string, userId),
+    getListItemsByListId(listId as string),
   ]);
 
   return { props: { list, listItems } };

@@ -1,4 +1,5 @@
 import ListsPreviews from '@/components/ListsPreviews';
+import { getListsByOwnerId } from '@/db-calls';
 import { List } from '@/types/List';
 import { GetServerSideProps } from 'next';
 import { Inter } from 'next/font/google';
@@ -9,8 +10,7 @@ export const getServerSideProps: GetServerSideProps<{
   lists: List[];
 }> = async () => {
   const userId = 'user001';
-  const res = await fetch(`http://localhost:3000/api/lists?ownerId=${userId}`);
-  const lists = await res.json();
+  const lists = await getListsByOwnerId(userId);
 
   return { props: { lists } };
 };

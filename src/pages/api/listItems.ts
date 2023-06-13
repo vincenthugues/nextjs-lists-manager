@@ -1,12 +1,8 @@
+import { getListItemsByListId } from '@/db-calls';
 import { ListItem } from '@/types/ListItem';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { listItems } from '../../db';
 
-function getListItemsByListId(listId: string): ListItem[] {
-  return listItems.filter((listItem) => listItem.listId === listId);
-}
-
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ListItem[]>
 ) {
@@ -16,6 +12,6 @@ export default function handler(
     return res.status(200).json([]);
   }
 
-  const items = getListItemsByListId(listId as string);
+  const items = await getListItemsByListId(listId as string);
   res.status(200).json(items);
 }
