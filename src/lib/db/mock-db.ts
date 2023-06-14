@@ -1,7 +1,7 @@
 import { List } from '@/types/List';
 import { ListItem } from '@/types/ListItem';
 
-export const lists: List[] = [
+const lists: List[] = [
   {
     id: 'list001',
     ownerId: 'user001',
@@ -41,7 +41,7 @@ export const lists: List[] = [
   },
 ];
 
-export const listItems: ListItem[] = [
+const listItems: ListItem[] = [
   {
     id: 'list-item001',
     listId: 'list001',
@@ -110,3 +110,8 @@ export const listItems: ListItem[] = [
     url: 'https://www.nytimes.com/2023/06/13/arts/design/met-museum-trains-monuments-men-ukraine.html',
   },
 ];
+
+export const db = {
+  lists,
+  listItems,
+};

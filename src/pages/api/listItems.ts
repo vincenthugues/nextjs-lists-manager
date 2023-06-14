@@ -1,4 +1,4 @@
-import { getListItemsByListId } from '@/db-calls';
+import { getListItemsByListId } from '@/lib/db/service';
 import { ListItem } from '@/types/ListItem';
 import type { NextApiRequest, NextApiResponse } from 'next';
 

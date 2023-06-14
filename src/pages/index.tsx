@@ -1,5 +1,5 @@
 import ListsPreviews from '@/components/ListsPreviews';
-import { getListsByOwnerId } from '@/db-calls';
+import { getListsByOwnerId } from '@/lib/db/service';
 import { List } from '@/types/List';
 import { GetServerSideProps } from 'next';
 import { Inter } from 'next/font/google';

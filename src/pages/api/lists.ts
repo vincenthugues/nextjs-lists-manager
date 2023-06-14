@@ -1,4 +1,4 @@
-import { getListsByOwnerId } from '@/db-calls';
+import { getListsByOwnerId } from '@/lib/db/service';
 import { List } from '@/types/List';
 import type { NextApiRequest, NextApiResponse } from 'next';
 

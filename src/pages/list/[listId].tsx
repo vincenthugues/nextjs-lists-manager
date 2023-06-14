@@ -1,5 +1,5 @@
 import ListComponent from '@/components/List';
-import { getListByIdAndOwnerId, getListItemsByListId } from '@/db-calls';
+import { getListByIdAndOwnerId, getListItemsByListId } from '@/lib/db/service';
 import { List } from '@/types/List';
 import { ListItem } from '@/types/ListItem';
 import { GetServerSideProps } from 'next';
