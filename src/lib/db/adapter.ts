@@ -1,71 +1,94 @@
-import { List } from '@/types/List';
-import { ListItem } from '@/types/ListItem';
+import {
+  CreateListFunction,
+  CreateListItemFunction,
+  DeleteListFunction,
+  DeleteListItemFunction,
+  GetListByIdFunction,
+  GetListItemByIdFunction,
+  GetListItemsFunction,
+  GetListsFunction,
+  UpdateListFunction,
+  UpdateListItemFunction,
+} from './interface';
 import { db } from './mock-db';
 
 // List
 
-export async function createList(list: List): Promise<List | null> {
+export const createList: CreateListFunction = async (list) => {
   db.lists.push(list);
 
   return list;
-}
+};
 
-export async function getLists(): Promise<List[]> {
+export const getLists: GetListsFunction = async () => {
   return db.lists || [];
-}
+};
 
-export async function getListById(listId: string): Promise<List | null> {
+export const getListById: GetListByIdFunction = async (listId: string) => {
   const list = db.lists.find(({ id }) => id === listId);
 
   return list || null;
-}
+};
 
-export async function updateList(
-  listId: string,
-  list: List
-): Promise<List | null> {
-  const index = db.lists.findIndex(({ id }) => id === listId);
-  db.lists[index] = list;
+export const updateList: UpdateListFunction = async (listId, list) => {
+  const listIndex = db.lists.findIndex(({ id }) => id === listId);
+  if (listIndex === -1) {
+    return null;
+  }
 
-  return list;
-}
+  const storedList = db.lists[listIndex];
+  const updatedList = {
+    ...storedList,
+    ...list,
+  };
 
-export async function deleteList(listId: string): Promise<void> {
+  db.lists[listIndex] = updatedList;
+
+  return updatedList;
+};
+
+export const deleteList: DeleteListFunction = async (listId: string) => {
   db.lists = db.lists.filter(({ id }) => id !== listId);
-}
+};
 
 // ListItem
 
-export async function createListItem(
-  listItem: ListItem
-): Promise<ListItem | null> {
+export const createListItem: CreateListItemFunction = async (listItem) => {
   db.listItems.push(listItem);
 
   return listItem;
-}
+};
 
-export async function getListItems(): Promise<ListItem[]> {
+export const getListItems: GetListItemsFunction = async () => {
   return db.listItems || [];
-}
+};
 
-export async function getListItemById(
-  listItemId: string
-): Promise<ListItem | null> {
+export const getListItemById: GetListItemByIdFunction = async (listItemId) => {
   const listItem = db.listItems.find(({ id }) => id === listItemId);
 
   return listItem || null;
-}
+};
 
-export async function updateListItem(
-  listItemId: string,
-  listItem: ListItem
-): Promise<ListItem | null> {
-  const index = db.listItems.findIndex(({ id }) => id === listItemId);
-  db.listItems[index] = listItem;
+export const updateListItem: UpdateListItemFunction = async (
+  listItemId,
+  listItem
+) => {
+  const listItemIndex = db.listItems.findIndex(({ id }) => id === listItemId);
+  if (listItemIndex === -1) {
+    return null;
+  }
 
-  return listItem;
-}
+  const storedListItem = db.listItems[listItemIndex];
+  const updatedListItem = {
+    ...storedListItem,
+    ...listItem,
+  };
 
-export async function deleteListItem(listItemId: string): Promise<void> {
+  db.listItems[listItemIndex] = updatedListItem;
+
+  return updatedListItem;
+};
+
+export const deleteListItem: DeleteListItemFunction = async (listItemId) => {
   db.listItems = db.listItems.filter(({ id }) => id !== listItemId);
-}
+};
