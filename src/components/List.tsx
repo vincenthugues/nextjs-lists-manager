@@ -12,7 +12,7 @@ export default function List({
   return (
     <>
       <div style={{ margin: '2rem 0' }}>
-        <h2 style={{ fontSize: '2rem' }}>List {name}</h2>
+        <h2 style={{ fontSize: '2rem' }}>{name}</h2>
       </div>
       <div className="relative flex place-items-center before:rounded-full">
         <div style={{ display: 'flex', flexDirection: 'column' }}>
