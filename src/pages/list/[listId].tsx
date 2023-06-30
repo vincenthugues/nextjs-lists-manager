@@ -3,6 +3,7 @@ import { getListByIdAndOwnerId, getListItemsByListId } from '@/lib/db/service';
 import { List } from '@/types/List';
 import { ListItem } from '@/types/ListItem';
 import { GetServerSideProps } from 'next';
+import Link from 'next/link';
 
 function getTextBetween(str1: string, str2: string) {
   return (input: string) => input.split(str1)[1].split(str2)[0];
@@ -84,6 +85,14 @@ export default function ListPage({
 
   return (
     <main className={`flex min-h-screen flex-col items-center p-24`}>
+      <Link
+        href="/"
+        className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+        style={{ minWidth: '200px' }}
+      >
+        <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>&lt; Back</p>
+      </Link>
+
       <ListComponent list={list} listItems={listItems} />
     </main>
   );
